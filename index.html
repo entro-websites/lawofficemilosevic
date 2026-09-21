@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milošević Law Office - Advokatska kancelarija</title>
+<meta name="description" content="Advokatska kancelarija Milošević - pravne usluge iz krivičnog, prekršajnog, obligacionog, radnog, privrednog, stvarnog, porodičnog, naslednog i poreskog prava.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent: #f7d449;
+    --accent-dark: #a8842a;
+    --accent-darker: #715c1c;
+    --accent-soft: #fdf6dd;
+    --accent-glow: rgba(247, 212, 73, 0.32);
+    --text: #1c1a14;
+    --text-muted: rgba(28, 26, 20, 0.68);
+    --text-faint: rgba(28, 26, 20, 0.46);
+    --bg: #fffdf8;
+    --border: rgba(28, 26, 20, 0.1);
+    --radius-btn: 6px;
+    --radius-card: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--text);
+    line-height: 1.15;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .wrap { padding-left: 20px; padding-right: 20px; }
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 15px 30px;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--text);
+  }
+  .btn-primary:hover {
+    background: var(--accent-dark);
+    color: #fff;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border-color: var(--text);
+    color: var(--text);
+  }
+  .btn-outline:hover {
+    background: var(--text);
+    color: #fff;
+  }
+
+  .btn-light {
+    background: #fff;
+    color: var(--text);
+    border-color: rgba(255,255,255,0.5);
+  }
+  .btn-light:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 253, 248, 0.9);
+    border-bottom: 1px solid var(--border);
+    transition: backdrop-filter 0.2s ease, background 0.2s ease;
+  }
+  header.scrolled {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 253, 248, 0.75);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 84px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.2px;
+  }
+  .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .logo span.sub {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .nav-links a {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1100;
+  }
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 2.5px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+  .hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  @media (max-width: 991px) {
+    .nav-links, .nav-right .btn { display: none; }
+    .hamburger { display: flex; }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: min(320px, 82vw);
+      background: var(--bg);
+      box-shadow: -8px 0 30px rgba(0,0,0,0.08);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 1050;
+      padding-top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a {
+      padding: 18px 32px;
+      font-weight: 600;
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu .btn {
+      margin: 24px 32px 0;
+    }
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20,18,12,0.35);
+      z-index: 1040;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .menu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .mobile-menu, .menu-overlay { display: none; }
+  }
+
+  /* ===== SECTION BASE ===== */
+  section {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  @media (max-width: 768px) {
+    section { padding-top: 64px; padding-bottom: 64px; }
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-darker);
+    background: var(--accent-soft);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .section-head {
+    max-width: 620px;
+    margin-bottom: 56px;
+  }
+  .section-head h2 {
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  .section-head p {
+    color: var(--text-muted);
+    font-size: 16.5px;
+    max-width: 60ch;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.pre {
+    opacity: 0.001;
+    transform: translateY(14px);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding-top: 120px;
+    padding-bottom: 110px;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -220px;
+    right: -180px;
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(247,212,73,0) 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 760px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 5.4vw, 60px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+  .hero p.sub {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 58ch;
+    margin-bottom: 36px;
+  }
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .hero-note {
+    font-size: 13.5px;
+    color: var(--text-faint);
+    font-weight: 500;
+  }
+
+  /* ===== PAIN SECTION ===== */
+  .pain {
+    background: var(--accent-soft);
+  }
+  .pain-inner {
+    max-width: 780px;
+  }
+  .pain h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+  .pain p {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 65ch;
+    margin-bottom: 14px;
+  }
+  .pain p:last-child { margin-bottom: 0; }
+
+  /* ===== SERVICES ===== */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 991px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 32px 28px;
+    background: #fff;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -30px rgba(28,26,20,0.25);
+    border-color: rgba(247,212,73,0.5);
+  }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .service-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--accent-darker);
+    fill: none;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .service-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .service-card p {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    max-width: 40ch;
+  }
+
+  .services-cta {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ===== ABOUT ===== */
+  .about {
+    background: var(--bg);
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .about-photo {
+    aspect-ratio: 4/5;
+    background: repeating-linear-gradient(135deg, #ececec, #ececec 12px, #e2e2e2 12px, #e2e2e2 24px);
+    border-radius: var(--radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-faint);
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    padding: 24px;
+    border: 1px solid var(--border);
+  }
+  .about-text .eyebrow { margin-bottom: 20px; }
+  .about-text h2 {
+    font-size: clamp(26px, 3.4vw, 36px);
+    font-weight: 800;
+    margin-bottom: 22px;
+  }
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 56ch;
+    margin-bottom: 16px;
+  }
+  .about-points {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .about-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .about-point svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent-darker);
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ===== CTA CLOSE ===== */
+  .cta-close {
+    background: #1c1a14;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-close::before {
+    content: "";
+    position: absolute;
+    bottom: -200px;
+    left: -100px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(247,212,73,0.16) 0%, rgba(247,212,73,0) 70%);
+    pointer-events: none;
+  }
+  .cta-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  @media (max-width: 900px) {
+    .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .cta-left h2 {
+    color: #fff;
+    font-size: clamp(28px, 3.6vw, 38px);
+    font-weight: 800;
+    margin-bottom: 18px;
+  }
+  .cta-left p {
+    color: rgba(255,255,255,0.68);
+    font-size: 16px;
+    max-width: 46ch;
+    margin-bottom: 28px;
+  }
+  .cta-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .cta-contact-item svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+
+  .cta-form {
+    background: #262319;
+    border-radius: var(--radius-card);
+    padding: 36px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .cta-form h3 {
+    color: #fff;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 480px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+  .cta-form input,
+  .cta-form textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--radius-btn);
+    padding: 13px 14px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .cta-form input::placeholder,
+  .cta-form textarea::placeholder {
+    color: rgba(255,255,255,0.4);
+  }
+  .cta-form textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+  .cta-form .btn {
+    width: 100%;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #17150f;
+    color: rgba(255,255,255,0.6);
+    padding-top: 56px;
+    padding-bottom: 32px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 24px;
+  }
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+    color: #fff;
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+  .footer-logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+  }
+  .footer-col p {
+    font-size: 13.5px;
+    max-width: 32ch;
+  }
+  .footer-col h4 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .footer-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-col a {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.2s ease;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    text-align: center;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.4);
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo">
+      <img src="assets/logo.png" alt="Milošević Law Office logo">
+      <span>
+        Milošević
+        <span class="sub">Law Office</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#usluge">Usluge</a>
+      <a href="#o-nama">O nama</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#kontakt" class="btn btn-primary">Zakaži konsultacije</a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Otvori meni">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#usluge">Usluge</a>
+  <a href="#o-nama">O nama</a>
+  <a href="#kontakt">Kontakt</a>
+  <a href="#kontakt" class="btn btn-primary">Zakaži konsultacije</a>
+</nav>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">Advokatska kancelarija</span>
+      <h1>Pravna zaštita kad ti odluke najviše znače</h1>
+      <p class="sub">Vodim te kroz krivične, porodične, imovinske i poslovne sporove sa jasnim planom, konkretnim rokovima i objašnjenjem svakog koraka pre nego što ga napraviš.</p>
+      <div class="hero-cta-row">
+        <a href="#kontakt" class="btn btn-primary">Zakaži konsultacije</a>
+        <span class="hero-note">Odgovaram lično, bez posrednika</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pain">
+    <div class="wrap pain-inner reveal" data-reveal>
+      <h2>Prepoznaješ li se u ovome?</h2>
+      <p>Dobio si poziv iz suda i ne znaš šta te čeka na saslušanju. Ugovor pred tobom ima klauzule koje ti niko nije objasnio. Nasledstvo se odužilo, a porodica se ne slaže oko podele imovine.</p>
+      <p>U svakoj od ovih situacija, korak koji povučeš sam, bez pravnog saveta, može te koštati više nego što misliš.</p>
+    </div>
+  </section>
+
+  <section id="usluge">
+    <div class="wrap">
+      <div class="section-head reveal" data-reveal>
+        <span class="eyebrow">Oblasti prava</span>
+        <h2>Čime se bavim</h2>
+        <p>Devet oblasti prava, jedan pristup: miran, jasan i usmeren na to da znaš gde stojiš u svakom trenutku postupka.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v18M5 7h14M5 7L3 12h4L5 7zM19 7l-2 5h4l-2-5M8 21h8"/></svg>
+          </div>
+          <h3>Krivično pravo</h3>
+          <p>Odbrana u krivičnom postupku, od prvog saslušanja do žalbe. Tu sam pre nego što daš bilo kakvu izjavu.</p>
+        </div>
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+          </div>
+          <h3>Prekršajno pravo</h3>
+          <p>Zastupanje u prekršajnim postupcima: saobraćajni prekršaji, novčane kazne i mere zaštite.</p>
+        </div>
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M5 5h14v14H5V5z"/></svg>
+          </div>
+          <h3>Obligaciono pravo</h3>
+          <p>Sastavljam i proveravam ugovore, rešavam sporove oko duga, naknade štete i neispunjenih obaveza.</p>
+        </div>
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 8h18v11H3V8zM8 8V5h8v3M3 12h18"/></svg>
+          </div>
+          <h3>Radno pravo</h3>
+          <p>Otkaz, mobing, neisplaćena zarada. Zastupam i zaposlene i poslodavce pred sudom i inspekcijom rada.</p>
+        </div>
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg>
+          </div>
+          <h3>Privredno pravo</h3>
+          <p>Osnivanje firmi, privredni ugovori, sporovi između privrednih subjekata i naplata potraživanja.</p>
+        </div>
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/></svg>
+          </div>
+          <h3>Stvarno pravo</h3>
+          <p>Sporovi oko vlasništva, međa, službenosti i uknjižbe nepokretnosti u katastru.</p>
+        </div>
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 21c-4-2.5-8-5.5-8-10a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 4.5-4 7.5-8 10z"/></svg>
+          </div>
+          <h3>Porodično pravo</h3>
+          <p>Razvod, izdržavanje, podela imovine i starateljstvo nad decom, uz pažnju koju ove situacije traže.</p>
+        </div>
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v17H6V2zM15 2v3h3M9 12h6M9 16h6"/></svg>
+          </div>
+          <h3>Nasledno pravo</h3>
+          <p>Zaostavština, testament, ostavinske rasprave i sporovi oko naslednog dela.</p>
+        </div>
+
+        <div class="service-card reveal" data-reveal>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"/></svg>
+          </div>
+          <h3>Poresko pravo</h3>
+          <p>Poreske prijave, sporovi sa poreskom upravom i savet pre nego što doneseš poslovnu odluku.</p>
+        </div>
+
+      </div>
+
+      <div class="services-cta">
+        <a href="#kontakt" class="btn btn-outline">Reci mi šta te muči</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-nama" class="about">
+    <div class="wrap about-inner">
+      <div class="about-photo reveal" data-reveal>
+        FOTOGRAFIJA ADVOKATA MILOŠEVIĆ
+      </div>
+      <div class="about-text reveal" data-reveal>
+        <span class="eyebrow">O kancelariji</span>
+        <h2>Advokatska kancelarija Milošević</h2>
+        <p>Vodim kancelariju koja pokriva devet oblasti prava, od krivičnog do poreskog. To znači da ne moraš da tražiš drugog advokata kad se tvoj slučaj ukrsti sa nekom drugom pravnom oblašću. Ostajemo na istom mestu, sa istim pristupom.</p>
+        <p>Svaki predmet gledam kao ono što jeste: nešto što utiče na tvoj svakodnevni život, posao ili porodicu. Zato ti pre svega objašnjavam šta te čeka, koliko postupak može trajati i šta realno možeš da očekuješ.</p>
+        <div class="about-points">
+          <div class="about-point">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            Direktna komunikacija, bez posrednika i bez čekanja na odgovor
+          </div>
+          <div class="about-point">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            Devet pravnih oblasti pod jednim krovom
+          </div>
+          <div class="about-point">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            Jasno objašnjenje pre svakog koraka u postupku
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="cta-close">
+    <div class="wrap cta-inner">
+      <div class="cta-left reveal" data-reveal>
+        <h2>Zakaži konsultacije</h2>
+        <p>Napiši mi u par rečenica o čemu se radi. Odgovaram lično i dogovaramo termin koji ti odgovara.</p>
+        <div class="cta-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zM4 4l8 8 8-8"/></svg>
+          office@lawofficemilosevic.rs
+        </div>
+        <div class="cta-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Srbija, po dogovoru online ili u kancelariji
+        </div>
+      </div>
+
+      <form class="cta-form reveal" data-reveal>
+        <h3>Pošalji upit</h3>
+        <div class="form-row">
+          <input type="text" placeholder="Ime" required>
+          <input type="text" placeholder="Prezime">
+        </div>
+        <input type="email" placeholder="Email adresa" required>
+        <input type="tel" placeholder="Broj telefona">
+        <textarea placeholder="Ukratko opiši o čemu se radi"></textarea>
+        <button type="submit" class="btn btn-primary">Pošalji upit i zakaži termin</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-col">
+        <a href="#top" class="footer-logo">
+          <img src="assets/logo.png" alt="Milošević Law Office logo">
+          Milošević Law Office
+        </a>
+        <p>Advokatska kancelarija za krivične, porodične, imovinske i poslovne pravne postupke.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Oblasti prava</h4>
+        <ul>
+          <li><a href="#usluge">Krivično pravo</a></li>
+          <li><a href="#usluge">Porodično pravo</a></li>
+          <li><a href="#usluge">Privredno pravo</a></li>
+          <li><a href="#usluge">Nasledno pravo</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kancelarija</h4>
+        <ul>
+          <li><a href="#o-nama">O nama</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="#kontakt">Zakaži konsultacije</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Milošević Law Office. Sva prava zadržana.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky header blur on scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuOverlay = document.getElementById('menuOverlay');
+
+  function closeMenu() {
+    hamburgerBtn.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    menuOverlay.classList.remove('open');
+  }
+
+  hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+    menuOverlay.classList.toggle('open');
+  });
+
+  menuOverlay.addEventListener('click', closeMenu);
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  revealEls.forEach(el => el.classList.add('reveal', 'pre'));
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('pre');
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.remove('pre'));
+  }
+</script>
+
+</body>
+</html>
